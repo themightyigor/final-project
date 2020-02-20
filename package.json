@@ -1,8 +1,8 @@
 {
-  "name": "webpack-lecture",
+  "name": "pokedex",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open --hot",
