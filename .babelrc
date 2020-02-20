@@ -1,5 +1,15 @@
 {
-  "presets": ["@babel/env", "@babel/typescript", "@babel/preset-react"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "debug": true
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
   "plugins": [
     [
       "@babel/plugin-transform-runtime",
