@@ -53,7 +53,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new CopyPlugin([{ from: path.join(__dirname, 'images'), to: 'images' }])
+    new CopyPlugin([{ from: path.join(__dirname, 'pokemons'), to: 'images' }])
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
