@@ -23,7 +23,11 @@ export const reducer: Reducer<IPokemonState, IPokemonActions> = (
         isFetching: false,
         pokemon: action.payload
       };
-
+    case PokemonActionTypes.FETCH_POKEMON_ERROR:
+      return {
+        ...state,
+        isFetching: false
+      };
     default:
       return state;
   }

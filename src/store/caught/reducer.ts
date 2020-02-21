@@ -1,18 +1,17 @@
 import { Reducer } from 'redux';
-import { ICaughtPokemonState, ICaughtPokemonActions } from './types';
-import { CaughtPokemonActionTypes } from './actions';
-import { ICatchedPokemon } from '../../types/models/pokemons';
+import { ICaughtPokemonsState, ICaughtPokemonsActions } from './types';
+import { CaughtPokemonsActionTypes } from './actions';
 
-const initialState: ICaughtPokemonState = {
+const initialState: ICaughtPokemonsState = {
   data: []
 };
 
-export const reducer: Reducer<ICaughtPokemonState, ICaughtPokemonActions> = (
-  state: ICaughtPokemonState = initialState,
-  action: ICaughtPokemonActions
-): ICaughtPokemonState => {
+export const reducer: Reducer<ICaughtPokemonsState, ICaughtPokemonsActions> = (
+  state: ICaughtPokemonsState = initialState,
+  action: ICaughtPokemonsActions
+): ICaughtPokemonsState => {
   switch (action.type) {
-    case CaughtPokemonActionTypes.CATCH_POKEMON:
+    case CaughtPokemonsActionTypes.CATCH_POKEMON:
       return {
         ...state,
         data: [...state.data, action.payload]

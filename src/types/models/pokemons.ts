@@ -3,7 +3,7 @@ export interface IPokemon {
   id: number;
 }
 
-export interface ICatchedPokemon {
+export interface ICaughtPokemon {
   id: number;
   date: number;
 }

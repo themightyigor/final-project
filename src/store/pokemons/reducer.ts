@@ -23,7 +23,7 @@ export const reducer: Reducer<IPokemonsState, IPokemonsActions> = (
       return {
         ...state,
         isFetching: false,
-        pokemons: [...state.pokemons, ...action.payload.data],
+        pokemons: [...state.pokemons, ...action.payload.pokemons],
         totalCount: action.payload.totalCount,
         currentPage: state.currentPage + 1
       };
@@ -33,9 +33,13 @@ export const reducer: Reducer<IPokemonsState, IPokemonsActions> = (
         isFetching: false,
         pokemons: [...state.pokemons, action.payload]
       };
+    case PokemonsActionTypes.FETCH_POKEMONS_ERROR:
+      return {
+        ...state,
+        isFetching: false
+      };
     case PokemonsActionTypes.CLEAR_POKEMONS:
-      return { ...initialState };
-
+      return initialState;
     default:
       return state;
   }

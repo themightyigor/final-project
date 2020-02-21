@@ -1,14 +1,15 @@
 import React from 'react';
+import './index.css';
 import { List, Spin } from 'antd';
-import { usePokemons } from '../../../store/pokemons/hooks';
 import InfiniteScroll from 'react-infinite-scroller';
 import { PokemonListItem } from '../PokemonListItem';
+import { usePokemons } from '../../../store/pokemons/hooks';
 
 type PokemonListProps = {
   isScrollable: boolean;
 };
 
-export const PokemonList: React.FC<PokemonListProps> = props => {
+export const PokemonList: React.FC<PokemonListProps> = ({ isScrollable }) => {
   const {
     fetch: fetchMore,
     pokemons: items,
@@ -23,7 +24,7 @@ export const PokemonList: React.FC<PokemonListProps> = props => {
         initialLoad={false}
         pageStart={0}
         loadMore={() => fetchMore()}
-        hasMore={!loading && currentPage <= totalPages && props.isScrollable}
+        hasMore={!loading && currentPage <= totalPages && isScrollable}
       >
         <List
           grid={{
@@ -40,15 +41,7 @@ export const PokemonList: React.FC<PokemonListProps> = props => {
           )}
         >
           {loading && (
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '40px',
-                width: '100%',
-                textAlign: 'center'
-              }}
-              className='demo-loading-container'
-            >
+            <div className='loading-container'>
               <Spin />
             </div>
           )}

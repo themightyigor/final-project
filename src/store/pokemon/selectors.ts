@@ -1,7 +1,7 @@
 import { StoreType } from '..';
 import { IPokemon } from '../../types/models/pokemons';
 
-export const getPokemon = (store: StoreType): IPokemon => {
+export const getPokemon = (store: StoreType): IPokemon | null => {
   return store.pokemon.pokemon;
 };
 

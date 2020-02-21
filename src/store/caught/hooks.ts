@@ -2,28 +2,28 @@ import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { catchPokemon } from './actions';
 import { getCaughtPokemons } from './selectors';
-import { ICatchedPokemon } from '../../types/models/pokemons';
+import { ICaughtPokemon } from '../../types/models/pokemons';
 
 interface ICaughtPokemonsHook {
   capture: (id: number) => void;
-  isAdded: boolean;
+  isCaught: boolean;
 }
 
 interface ICaughtPokemonHook {
-  isAdded: boolean;
-  match: ICatchedPokemon;
+  isCaught: boolean;
+  match: ICaughtPokemon | undefined;
 }
 
-export function useCaughtPokemons(id): ICaughtPokemonsHook {
+export function useCaughtPokemons(id: number): ICaughtPokemonsHook {
   const dispatch = useDispatch();
-  const captured = useSelector(getCaughtPokemons);
+  const caught = useSelector(getCaughtPokemons);
 
   const currentIndex = useMemo<number>(
-    () => captured.map(capture => capture.id).indexOf(id),
-    [id, captured]
+    () => caught.map(c => c.id).indexOf(id),
+    [id, caught]
   );
 
-  const isAdded = useMemo<boolean>(() => currentIndex !== -1, [currentIndex]);
+  const isCaught = useMemo<boolean>(() => currentIndex !== -1, [currentIndex]);
 
   const capture = useCallback(
     (id: number) => {
@@ -32,17 +32,15 @@ export function useCaughtPokemons(id): ICaughtPokemonsHook {
     [dispatch]
   );
 
-  return { capture, isAdded };
+  return { capture, isCaught };
 }
 
-export function useCaughtPokemon(id): ICaughtPokemonHook {
-  const captured = useSelector(getCaughtPokemons);
+export function useCaughtPokemon(id: number): ICaughtPokemonHook {
+  const caught = useSelector(getCaughtPokemons);
 
-  const { isAdded } = useCaughtPokemons(id);
+  const { isCaught } = useCaughtPokemons(id);
 
-  const match = useMemo(() => captured.find(capture => capture.id === id), [
-    id
-  ]);
+  const match = useMemo(() => caught.find(c => c.id === id), [id]);
 
-  return { isAdded, match };
+  return { isCaught, match };
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { PokemonList } from '../Pokemons/PokemonList';
 import { useCaughtPokemonsList } from '../../store/pokemons/hooks';
 
-const Caught = () => {
+export const Caught: React.FC = () => {
   const { fetchCaught, clear } = useCaughtPokemonsList();
 
   useEffect(() => {
@@ -13,5 +13,3 @@ const Caught = () => {
 
   return <PokemonList isScrollable={false} />;
 };
-
-export default Caught;

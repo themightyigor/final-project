@@ -9,7 +9,6 @@ import {
 import { fetchPokemons, fetchCaughtPokemons, clearPokemons } from './actions';
 import { IPokemon } from '../../types/models/pokemons';
 import { getCaughtPokemons } from '../caught/selectors';
-import { useCaughtPokemons } from '../caught/hooks';
 
 interface IPokemonsHook {
   pokemons: IPokemon[];
@@ -18,6 +17,12 @@ interface IPokemonsHook {
   clear: () => void;
   totalPages: number;
   currentPage: number;
+}
+
+interface ICaughtPokemonsListHook {
+  fetchCaught: () => void;
+  loading: boolean;
+  clear: () => void;
 }
 
 export function usePokemons(): IPokemonsHook {
@@ -45,19 +50,21 @@ export function usePokemons(): IPokemonsHook {
   };
 }
 
-export function useCaughtPokemonsList() {
+export function useCaughtPokemonsList(): ICaughtPokemonsListHook {
   const dispatch = useDispatch();
   const caught = useSelector(getCaughtPokemons);
+  const loading = useSelector(isFetching);
 
   const { clear } = usePokemons();
 
   const fetchCaught = useCallback(() => {
     caught
       .map(caught => caught.id)
+      .reverse()
       .forEach(id => {
         dispatch(fetchCaughtPokemons(id));
       });
   }, [dispatch]);
 
-  return { fetchCaught, clear };
+  return { fetchCaught, loading, clear };
 }

@@ -1,17 +1,17 @@
 import { ActionCreator } from 'redux';
-import { ICaughtPokemonActions } from './types';
+import { ICaughtPokemonsActions } from './types';
 
-export enum CaughtPokemonActionTypes {
+export enum CaughtPokemonsActionTypes {
   CATCH_POKEMON = 'CATCH_POKEMON'
 }
 
-export const catchPokemon: ActionCreator<ICaughtPokemonActions> = (
+export const catchPokemon: ActionCreator<ICaughtPokemonsActions> = (
   id: number
 ) => {
   return {
-    type: CaughtPokemonActionTypes.CATCH_POKEMON,
+    type: CaughtPokemonsActionTypes.CATCH_POKEMON,
     payload: {
-      id: id,
+      id,
       date: Date.now()
     }
   };

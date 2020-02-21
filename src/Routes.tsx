@@ -1,20 +1,19 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Layout } from 'antd';
 import {
   POKEMONS_INDEX_ROUTE,
   POKEMONS_VIEW_ROUTE,
   POKEMONS_CAUGHT_VIEW_ROUTE
 } from './constants/routes';
-import Pokemons from './pages/Pokemons';
-import Pokemon from './pages/Pokemon';
-import Caught from './pages/Caught';
-
+import { Pokemons } from './pages/Pokemons';
+import { Pokemon } from './pages/Pokemon';
+import { Caught } from './pages/Caught';
 import Header from './components/Header';
-import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-const Routes = () => (
+const Routes: React.FC = () => (
   <Layout>
     <Header />
     <Content style={{ padding: '0 50px', marginTop: 32 }}>

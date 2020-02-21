@@ -2,13 +2,16 @@ import { Action } from 'redux';
 import { IPokemon } from '../../types/models/pokemons';
 import { PokemonActionTypes } from './actions';
 
-export interface IFetchPokemonsSuccessAction
+export interface IFetchPokemonRequestAction
+  extends Action<typeof PokemonActionTypes.FETCH_POKEMON_REQUEST> {}
+
+export interface IFetchPokemonSuccessAction
   extends Action<typeof PokemonActionTypes.FETCH_POKEMON_SUCCESS> {
   readonly payload: IPokemon;
 }
 
-export interface IFetchPokemonsRequestAction
-  extends Action<typeof PokemonActionTypes.FETCH_POKEMON_REQUEST> {}
+export interface IFetchPokemonErrorAction
+  extends Action<typeof PokemonActionTypes.FETCH_POKEMON_ERROR> {}
 
 export interface IPokemonState {
   readonly pokemon: IPokemon | null;
@@ -16,5 +19,6 @@ export interface IPokemonState {
 }
 
 export type IPokemonActions =
-  | IFetchPokemonsRequestAction
-  | IFetchPokemonsSuccessAction;
+  | IFetchPokemonRequestAction
+  | IFetchPokemonSuccessAction
+  | IFetchPokemonErrorAction;

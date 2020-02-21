@@ -1,8 +1,10 @@
 import React from 'react';
+import './index.css';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
-import { CatchButton } from '../CatchButton';
 import { IPokemon } from '../../../types/models/pokemons';
+import { CatchButton } from '../CatchButton';
+import { capitalizeFirst, onImageError } from '../../../helpers/utils';
 
 type IPokemonListItemProps = IPokemon;
 
@@ -12,8 +14,6 @@ export const PokemonListItem: React.FC<IPokemonListItemProps> = ({
   id,
   name
 }) => {
-  console.log('render');
-
   return (
     <Card
       hoverable
@@ -21,19 +21,14 @@ export const PokemonListItem: React.FC<IPokemonListItemProps> = ({
       cover={
         <Link to={`/pokemons/${id}`}>
           <img
-            style={{
-              display: 'block',
-              width: '70%',
-              maxWidth: '240px',
-              margin: '0 auto'
-            }}
-            alt='example'
+            className='pokemon-image'
             src={`/images/${id}.png`}
+            onError={e => onImageError(e)}
           />
         </Link>
       }
     >
-      <Meta title={name} />
+      <Meta title={capitalizeFirst(name)} />
     </Card>
   );
 };
